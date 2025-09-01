@@ -1,8 +1,5 @@
 package com.rouvsen.pdfgen1.dao.entity;
 
-import static jakarta.persistence.GenerationType.SEQUENCE;
-import static lombok.AccessLevel.PRIVATE;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,29 +13,37 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
+import java.time.LocalDate;
+
+import static jakarta.persistence.GenerationType.SEQUENCE;
+import static lombok.AccessLevel.PRIVATE;
+
 @Entity
-@Table(name = "TEST")
+@Table(name = "STATEMENT")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = PRIVATE)
-public class TestEntity {
+public class StatementEntity {
 
     @Id
-    @GeneratedValue(strategy = SEQUENCE, generator = "test_seq_gen")
+    @GeneratedValue(strategy = SEQUENCE, generator = "statement_seq_gen")
     @SequenceGenerator(
-            name = "test_seq_gen",
-            sequenceName = "TEST_ID_SEQ",
-            allocationSize = 50
+            name = "statement_seq_gen",
+            sequenceName = "STATEMENT_ID_SEQ",
+            allocationSize = 10
     )
     @Column(name = "ID", nullable = false)
     Long id;
 
-    @Column(name = "CUSTOMER_ID", nullable = false, unique = true, length = 16)
+    @Column(name = "CUSTOMER_ID", nullable = false, length = 16)
     String customerId;
 
-    @Column(name = "PASSWORD", nullable = false, length = 255)
-    String password;
+    @Column(name = "ST_DATE", nullable = false)
+    LocalDate date;
+
+    @Column(name = "DESCRIPTION", nullable = false, length = 500)
+    String description;
 }

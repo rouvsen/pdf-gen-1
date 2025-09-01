@@ -3,14 +3,14 @@ version: '3.9'
 services:
   db_pdf_gen_1:
     container_name: db_pdf_gen_1
-    image: gvenzl/oracle-xe:21-slim   # Oracle 21c XE slim image (free)
+    image: gvenzl/oracle-free:latest
     ports:
       - "1521:1521"
       - "5500:5500"
     environment:
-      ORACLE_PASSWORD: oracle       # SYS, SYSTEM and PDBADMIN password
-      APP_USER: demo_user           # dedicated schema user
-      APP_USER_PASSWORD: secret     # password for demo_user
+      ORACLE_PASSWORD: oracle
+      APP_USER: demo_user
+      APP_USER_PASSWORD: secret
     volumes:
       - oracle-data:/opt/oracle/oradata
 

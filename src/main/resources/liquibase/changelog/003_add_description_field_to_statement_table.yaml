@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003_add_description_column
+      author: Rovshan Maharramov
+      changes:
+        - addColumn:
+            tableName: STATEMENT
+            columns:
+              - column:
+                  name: DESCRIPTION
+                  type: VARCHAR2(500 CHAR)

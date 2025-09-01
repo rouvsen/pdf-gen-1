@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 001_create_test_table
+      id: 001_create_test_table_and_sequence
       author: Rovshan Maharramov
       changes:
         - createTable:
@@ -8,28 +8,25 @@ databaseChangeLog:
             remarks: This is table to store test details.
             columns:
               - column:
-                  name: id
-                  type: number(19,0)
+                  name: ID
+                  type: NUMBER
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: customer_id
-                  type: varchar2(16)
+                  name: CUSTOMER_ID
+                  type: VARCHAR2(16)
                   constraints:
                     unique: true
                     nullable: false
               - column:
-                  name: password
-                  type: varchar2(255)
+                  name: PASSWORD
+                  type: VARCHAR2(255)
                   constraints:
                     nullable: false
-  - changeSet:
-      id: 002_create_test_sequence
-      author: Rovshan Maharramov
-      changes:
         - createSequence:
             sequenceName: TEST_ID_SEQ
             startValue: 1
             incrementBy: 50
-            dataType: number(19,0)
+            cacheSize: 50
+            cycle: false

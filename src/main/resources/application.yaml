@@ -1,4 +1,7 @@
 spring:
+  sql:
+    init:
+      mode: never #always
   application:
     name: pdf-gen-1
   main:
@@ -9,9 +12,9 @@ spring:
   liquibase:
     change-log: classpath:liquibase/changelog-master.yaml
   datasource:
-    url: jdbc:oracle:thin:@//${ORACLE_DB_HOST:localhost:1521}/FREEPDB1
-    username: ${ORACLE_DB_USER:demo_user}
-    password: ${ORACLE_DB_PASSWORD:secret}
+    url: jdbc:oracle:thin:@//localhost:1521/FREEPDB1
+    username: demo_user
+    password: secret
     driver-class-name: oracle.jdbc.OracleDriver
     hikari:
       maximum-pool-size: 20
@@ -43,12 +46,13 @@ spring:
       hibernate:
         default_schema: DEMO_USER #
         jdbc:
-          batch_size: 25             # to Batch insert/update
+          batch_size: 100             # to Batch insert/update
           batch_versioned_data: true
         order_inserts: true          # Performance increasing
         order_updates: true
-        show_sql: true
-        format_sql: true
+        generate_statistics: true
+        show_sql: false
+        format_sql: false
         use_sql_comments: false
 
 jdbc:
@@ -76,6 +80,7 @@ logging:
     org.hibernate.SQL: WARN
     org.hibernate.type.descriptor.sql.BasicBinder: WARN
     com.zaxxer.hikari: INFO          # HikariCP connection pool logs
+    org.hibernate.engine.jdbc.batch.internal.BatchingBatch: DEBUG
 #    org.springframework.web: INFO   # Web request logs
   pattern:
     console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
