@@ -20,7 +20,6 @@ public class DataInitializer implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        System.out.println(LocalDate.now());
         List<StatementEntity> entities = new ArrayList<>();
         if (statementRepository.count() == 0) {
             LocalDate statementDate = LocalDate.now();

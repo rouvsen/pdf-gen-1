@@ -23,7 +23,7 @@ public class StatementRequestDto {
     String customerId;
 
     @Default
-    LocalDate beginDate = LocalDate.now().minusDays(10);;
+    LocalDate beginDate = LocalDate.now().minusDays(7);
 
     @Default
     LocalDate endDate =  LocalDate.now();

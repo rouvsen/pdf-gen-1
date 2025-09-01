@@ -13,7 +13,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(exception = Exception.class)
     public ResponseEntity<?> handleException(Exception exception) {
-        log.error("Intern Unexpected Exception occurred: {}", exception.getMessage());
+        log.error("Internal Unexpected Exception occurred: {}", exception.getMessage());
         return new ResponseEntity<>(BAD_REQUEST);
     }
 }
